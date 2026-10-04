@@ -1,0 +1,991 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+
+% ------------------------------------------------
+% PACKAGES - KEPT LIGHT FOR FAST COMPILATION
+% ------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+
+% ------------------------------------------------
+% THEME
+% ------------------------------------------------
+\usetheme{Madrid}
+
+% ------------------------------------------------
+% COLORS
+% ------------------------------------------------
+\definecolor{Navy}{RGB}{25,45,75}
+\definecolor{Teal}{RGB}{0,120,120}
+\definecolor{Gold}{RGB}{205,145,35}
+\definecolor{LightTeal}{RGB}{235,247,247}
+\definecolor{LightGold}{RGB}{250,245,230}
+\definecolor{DarkGray}{RGB}{55,55,55}
+
+\setbeamercolor{structure}{fg=Teal}
+\setbeamercolor{frametitle}{fg=white,bg=Navy}
+\setbeamercolor{title}{fg=white,bg=Navy}
+\setbeamercolor{author}{fg=white,bg=Navy}
+\setbeamercolor{institute}{fg=white,bg=Navy}
+
+\setbeamercolor{block title}{fg=white,bg=Teal}
+\setbeamercolor{block body}{fg=black,bg=LightTeal}
+
+\setbeamercolor{exampleblock title}{fg=white,bg=Gold}
+\setbeamercolor{exampleblock body}{fg=black,bg=LightGold}
+
+% ------------------------------------------------
+% REMOVE NAVIGATION SYMBOLS
+% ------------------------------------------------
+\setbeamertemplate{navigation symbols}{}
+
+% ------------------------------------------------
+% FOOTER
+% ------------------------------------------------
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.72\paperwidth,ht=2.5ex,
+      dp=1ex,leftskip=1em]{author in head/foot}%
+      Mathematics of Computing -- CUSAT M.Tech
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.28\paperwidth,ht=2.5ex,
+      dp=1ex,rightskip=1em plus1fil]{date in head/foot}%
+      \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}
+  }%
+}
+
+% ------------------------------------------------
+% TITLE INFORMATION
+% ------------------------------------------------
+\title[Mathematics of Computing]
+{Mathematics of Computing}
+
+
+
+\author{Sayona C Sajan}
+
+\institute{
+CUSAT -- M.Tech Artificial Intelligence \& Software Engineering
+}
+
+\date{2026}
+
+% ------------------------------------------------
+% DOCUMENT
+% ------------------------------------------------
+\begin{document}
+
+% =================================================
+% TITLE PAGE
+% =================================================
+
+{
+\setbeamertemplate{footline}{}
+\begin{frame}
+    \titlepage
+\end{frame}
+}
+
+
+% =================================================
+% 1. PROOFS
+% =================================================
+
+\section{Proofs}
+
+\begin{frame}{1. Proofs -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A recursive program has
+$T(n)=T(n-1)+1$, $T(1)=1$. Prove that $T(n)=n$.
+
+\item Prove that the sum of two even integers is even.
+
+\item Why can testing a finite number of cases never prove a universal mathematical statement?
+
+\item What are the essential components of a mathematical proof?
+
+\item Why is the argument ``all tested primes greater than 2 are odd, therefore every prime is odd'' invalid?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{1. Proofs -- Answers}
+
+\begin{enumerate}
+\item \textbf{Induction:} Base case $T(1)=1$. Assume $T(k)=k$. Then
+\[
+T(k+1)=T(k)+1=k+1.
+\]
+Therefore $T(n)=n$.
+
+\item Let $a=2m$ and $b=2n$. Then
+\[
+a+b=2(m+n),
+\]
+which is even.
+
+\item Finite testing only establishes that the statement is true for the tested cases. A universal statement requires a proof for every allowed case.
+
+\item Assumptions, definitions, logical reasoning, justified intermediate steps, and a conclusion.
+
+\item The number $2$ is a counterexample. A universal statement fails if even one valid counterexample exists.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 2. PROPOSITIONS
+% =================================================
+
+\section{Propositions}
+
+\begin{frame}{2. Propositions -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A system accepts a request only when the input is valid and the user is authenticated. Express this as a proposition.
+
+\item What is a proposition?
+
+\item When is an implication $p\to q$ false?
+
+\item Express ``If the server is down, the application cannot connect'' symbolically.
+
+\item Rewrite $p\to q$ using only $\neg$ and $\lor$.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{2. Propositions -- Answers}
+
+\begin{enumerate}
+\item If $p$ = valid input and $q$ = authenticated user, then
+\[
+p\land q.
+\]
+
+\item A proposition is a declarative statement that is either true or false, but not both.
+
+\item $p\to q$ is false only when
+\[
+p=T,\qquad q=F.
+\]
+
+\item If $p$ = server is down and $q$ = application can connect:
+\[
+p\to\neg q.
+\]
+
+\item
+\[
+p\to q\equiv\neg p\lor q.
+\]
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 3. PREDICATES AND QUANTIFIERS
+% =================================================
+
+\section{Predicates and Quantifiers}
+
+\begin{frame}{3. Predicates and Quantifiers -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Express ``Every user has at least one valid login'' using quantifiers.
+
+\item What is the negation of
+\[
+\forall x\,P(x)?
+\]
+
+\item Are $\forall x\exists y\,P(x,y)$ and
+$\exists y\forall x\,P(x,y)$ equivalent?
+
+\item Express ``There exists an integer whose square is 9.''
+
+\item Negate
+\[
+\exists x\forall y\,P(x,y).
+\]
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{3. Predicates and Quantifiers -- Answers}
+
+\begin{enumerate}
+\item
+\[
+\forall x\,
+(User(x)\to\exists y\,ValidLogin(y,x)).
+\]
+
+\item
+\[
+\neg\forall xP(x)
+\equiv
+\exists x\neg P(x).
+\]
+
+\item No. The first allows a different $y$ for each $x$; the second requires one common $y$ for every $x$.
+
+\item
+\[
+\exists x\in\mathbb Z\;(x^2=9).
+\]
+
+\item
+\[
+\forall x\exists y\,\neg P(x,y).
+\]
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 4. TRUTH TABLES
+% =================================================
+
+\section{Truth Tables}
+
+\begin{frame}{4. Truth Tables -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A security rule is
+\[
+A=(p\land q)\lor\neg r.
+\]
+How many rows are required in its truth table?
+
+\item When is an implication $p\to q$ true?
+
+\item Prove using a truth table:
+\[
+\neg(p\land q)\equiv\neg p\lor\neg q.
+\]
+
+\item Define tautology, contradiction, and contingency.
+
+\item Is $p\to q$ equivalent to $q\to p$?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{4. Truth Tables -- Answers}
+
+\begin{enumerate}
+\item There are three variables. Therefore,
+\[
+2^3=8
+\]
+rows are required.
+
+\item It is false only when $p$ is true and $q$ is false.
+
+\item Evaluate both sides for all four combinations of $p,q$. Their truth values are identical, so they are logically equivalent.
+
+\item A tautology is always true. A contradiction is always false. A contingency is sometimes true and sometimes false.
+
+\item No. $p\to q$ and $q\to p$ are generally different propositions.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 5. FOL SATISFIABILITY
+% =================================================
+
+\section{First-Order Logic Satisfiability}
+
+\begin{frame}{5. First-Order Logic Satisfiability -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Is
+\[
+\forall x(User(x)\to\exists y\,Login(y,x))
+\]
+satisfiable?
+
+\item What does it mean for a formula to be satisfiable?
+
+\item Is
+\[
+\forall xP(x)\land\exists x\neg P(x)
+\]
+satisfiable?
+
+\item How can an existential formula be shown to be satisfiable?
+
+\item Is every satisfiable formula valid?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{5. First-Order Logic Satisfiability -- Answers}
+
+\begin{enumerate}
+\item Yes. Construct an interpretation where every user has at least one login.
+
+\item A formula is satisfiable if there exists at least one interpretation in which it is true.
+
+\item No. The first part says every object satisfies $P$, while the second requires one object that does not satisfy $P$.
+
+\item Give a suitable domain and provide a witness satisfying the existential condition.
+
+\item No. Satisfiable means true in at least one interpretation; valid means true in every interpretation.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 6. PATTERN OF PROOF
+% =================================================
+
+\section{Pattern of Proof}
+
+\begin{frame}{6. Pattern of Proof -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A recursive algorithm changes $n$ to $n-1$. How can induction help prove its correctness?
+
+\item How do you prove a universal statement?
+
+\item How do you prove an existential statement?
+
+\item How can a universal statement be disproved?
+
+\item How does the form of a mathematical statement suggest the proof technique?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{6. Pattern of Proof -- Answers}
+
+\begin{enumerate}
+\item Prove correctness for the base case, then assume correctness for $k$ and prove it for $k+1$.
+
+\item Choose an arbitrary object and prove the property for it.
+
+\item Provide a specific witness and prove that it satisfies the required property.
+
+\item Give one valid counterexample.
+
+\item Universal statements usually suggest direct proof or induction; existential statements suggest finding a witness; implications suggest proving the consequent from the antecedent.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 7. PROOFS BY CASES
+% =================================================
+
+\section{Proofs by Cases}
+
+\begin{frame}{7. Proofs by Cases -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A program behaves differently for even and odd inputs. How can its correctness be proved?
+
+\item Prove that $n(n+1)$ is always even.
+
+\item Prove that $|x|\geq0$ using cases.
+
+\item How could a proof involving an integer modulo 3 be divided into cases?
+
+\item What is the most important requirement when using proof by cases?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{7. Proofs by Cases -- Answers}
+
+\begin{enumerate}
+\item Consider the two exhaustive cases: $n$ even and $n$ odd. Prove correctness independently in each case.
+
+\item If $n$ is even, the product is even. If $n$ is odd, $n+1$ is even. Hence the product is always even.
+
+\item If $x\geq0$, then $|x|=x\geq0$. If $x<0$, then $|x|=-x>0$.
+
+\item Consider:
+\[
+n\equiv0,1,2\pmod3.
+\]
+
+\item The cases must be exhaustive and should not leave out any possible situation.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 8. IMPLICATION
+% =================================================
+
+\section{Proof of an Implication}
+
+\begin{frame}{8. Proof of an Implication -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A cache key being valid implies that the corresponding record exists. How can this implication be proved?
+
+\item Prove: If an integer is divisible by 6, then it is divisible by 3.
+
+\item What is the contrapositive of ``if $n^2$ is odd, then $n$ is odd''?
+
+\item Is the converse of an implication automatically true?
+
+\item What is vacuous truth?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{8. Proof of an Implication -- Answers}
+
+\begin{enumerate}
+\item Assume the cache key is valid. Use the definition of validity to show that a corresponding stored record must exist.
+
+\item Let $n=6k$. Then
+\[
+n=3(2k),
+\]
+so $n$ is divisible by 3.
+
+\item The contrapositive is:
+\[
+n\text{ even}\to n^2\text{ even}.
+\]
+
+\item No. The converse requires a separate proof.
+
+\item An implication is true whenever its antecedent is false, regardless of the consequent.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 9. CONTRADICTION
+% =================================================
+
+\section{Proof by Contradiction}
+
+\begin{frame}{9. Proof by Contradiction -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Why can a graph path that visits more vertices than possible without repetition be used to derive a contradiction?
+
+\item What is the basic method of proof by contradiction?
+
+\item Give the main idea for proving that $\sqrt2$ is irrational.
+
+\item Why does the statement ``there is no largest integer'' lead to contradiction if a largest integer is assumed?
+
+\item When is contradiction especially useful?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{9. Proof by Contradiction -- Answers}
+
+\begin{enumerate}
+\item A finite graph has only finitely many vertices. Assuming an excessively long simple path forces a repeated vertex, contradicting simplicity.
+
+\item Assume the negation of the desired conclusion and derive an impossible statement.
+
+\item Assume $\sqrt2=a/b$ in lowest terms. Squaring gives $a^2=2b^2$, forcing both $a$ and $b$ to be even, a contradiction.
+
+\item If $n$ were largest, then $n+1$ would be a larger integer.
+
+\item It is useful when directly proving the statement is difficult but its negation naturally creates an impossibility.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 10. IFF
+% =================================================
+
+\section{Proving IFF}
+
+\begin{frame}{10. Proving IFF -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A binary tree is balanced iff the height difference of its subtrees is at most 1. How would you prove this?
+
+\item What does $P\iff Q$ mean?
+
+\item Prove:
+\[
+n\text{ is even}\iff n^2\text{ is even}.
+\]
+
+\item How can set equality be proved using iff?
+
+\item Why is proving only one direction insufficient?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{10. Proving IFF -- Answers}
+
+\begin{enumerate}
+\item Prove both directions: balanced $\to$ height difference at most 1, and height difference at most 1 $\to$ balanced.
+
+\item It means both implications hold:
+\[
+P\to Q
+\quad\text{and}\quad
+Q\to P.
+\]
+
+\item If $n=2k$, then $n^2=4k^2$ is even. Conversely, if $n^2$ is even, $n$ must be even.
+
+\item Show
+\[
+x\in A\iff x\in B
+\]
+for every element $x$.
+
+\item One direction only establishes implication, not equivalence.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 11. SETS
+% =================================================
+
+\section{Sets}
+
+\begin{frame}{11. Sets -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} If $A$ is all users and $B$ is administrators, what does $A-B$ represent?
+
+\item Define union and intersection.
+
+\item What does $A\subseteq B$ mean?
+
+\item How many subsets does a set containing $n$ elements have?
+
+\item State De Morgan's laws for sets.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{11. Sets -- Answers}
+
+\begin{enumerate}
+\item
+\[
+A-B
+\]
+represents users who are not administrators.
+
+\item
+\[
+A\cup B
+\]
+contains elements in either set, while
+\[
+A\cap B
+\]
+contains elements common to both.
+
+\item Every element of $A$ is also an element of $B$.
+
+\item
+\[
+2^n.
+\]
+
+\item
+\[
+(A\cup B)^c=A^c\cap B^c
+\]
+and
+\[
+(A\cap B)^c=A^c\cup B^c.
+\]
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 12. SET EQUATIONS
+% =================================================
+
+\section{Proving Set Equations}
+
+\begin{frame}{12. Proving Set Equations -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Show that the database query
+``$(A$ OR $B)$ AND NOT $C$'' is equivalent to
+\[
+(A\land\neg C)\lor(B\land\neg C).
+\]
+
+\item Prove:
+\[
+A-B=A\cap B^c.
+\]
+
+\item Prove:
+\[
+A\cup(A\cap B)=A.
+\]
+
+\item What is the two-inclusion method?
+
+\item Prove:
+\[
+A\cap(B\cup C)
+=(A\cap B)\cup(A\cap C).
+\]
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{12. Proving Set Equations -- Answers}
+
+\begin{enumerate}
+\item By distributivity:
+\[
+(A\lor B)\land\neg C
+=
+(A\land\neg C)\lor(B\land\neg C).
+\]
+
+\item
+\[
+x\in A-B
+\iff x\in A\land x\notin B
+\iff x\in A\cap B^c.
+\]
+
+\item By absorption:
+\[
+A\cup(A\cap B)=A.
+\]
+
+\item Prove both
+\[
+A\subseteq B
+\]
+and
+\[
+B\subseteq A.
+\]
+Then $A=B$.
+
+\item Use distributivity:
+\[
+A\cap(B\cup C)
+=(A\cap B)\cup(A\cap C).
+\]
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 13. RUSSELL
+% =================================================
+
+\section{Russell's Paradox}
+
+\begin{frame}{13. Russell's Paradox -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Why does the collection of all data structures that do not contain themselves create a Russell-type paradox?
+
+\item State Russell's paradox.
+
+\item Why does unrestricted set formation cause problems?
+
+\item How does axiomatic set theory avoid the paradox?
+
+\item Why does
+\[
+R\in R\iff R\notin R
+\]
+produce a contradiction?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{13. Russell's Paradox -- Answers}
+
+\begin{enumerate}
+\item Let $R$ contain all structures that do not contain themselves. Asking whether $R$ contains itself produces the contradiction.
+
+\item Consider
+\[
+R=\{x:x\notin x\}.
+\]
+Then $R\in R$ iff $R\notin R$.
+
+\item It allows definitions such as ``the set of all sets having property $P$'', which can be self-referential.
+
+\item Modern axiomatic set theory restricts how sets can be constructed.
+
+\item If $R\in R$, the definition says $R\notin R$. If $R\notin R$, the definition says $R\in R$. Both possibilities contradict themselves.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 14. WELL ORDERING
+% =================================================
+
+\section{Well-Ordering Principle}
+
+\begin{frame}{14. Well-Ordering Principle -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} Why does repeatedly selecting a smaller positive integer eventually terminate?
+
+\item State the Well-Ordering Principle.
+
+\item How is the minimal-counterexample method related to well-ordering?
+
+\item Are all integers well-ordered under the usual $\leq$ relation?
+
+\item What is the relationship between well-ordering and induction?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{14. Well-Ordering Principle -- Answers}
+
+\begin{enumerate}
+\item The positive integers are well-ordered, so an infinite strictly decreasing sequence of positive integers cannot exist.
+
+\item Every nonempty subset of the positive integers has a least element.
+
+\item If counterexamples exist, choose the smallest one. Then derive a contradiction by constructing a smaller counterexample.
+
+\item No. The set of all integers has no least element.
+
+\item The Well-Ordering Principle and the Principle of Mathematical Induction are equivalent over the positive integers.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 15. INDUCTION
+% =================================================
+
+\section{Mathematical Induction}
+
+\begin{frame}{15. Induction -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} A loop processes one array element per iteration. How can induction prove that after $k$ iterations exactly $k$ elements have been processed?
+
+\item State the Principle of Mathematical Induction.
+
+\item Prove:
+\[
+1+2+\cdots+n=\frac{n(n+1)}2.
+\]
+
+\item What is the induction hypothesis?
+
+\item What are common mistakes in induction proofs?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{15. Induction -- Answers}
+
+\begin{enumerate}
+\item Prove the property for the first iteration, assume it after $k$ iterations, then show it after $k+1$ iterations.
+
+\item Prove a base case and prove that
+\[
+P(k)\to P(k+1).
+\]
+
+\item Base:
+\[
+1=\frac{1(2)}2.
+\]
+Assume true for $k$. Then
+\[
+\frac{k(k+1)}2+(k+1)
+=
+\frac{(k+1)(k+2)}2.
+\]
+
+\item It is the assumption that $P(k)$ is true in the induction step.
+
+\item Missing the base case, assuming the conclusion directly, or failing to prove the step from $k$ to $k+1$.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 16. INVARIANTS
+% =================================================
+
+\section{Invariants}
+
+\begin{frame}{16. Invariants -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} What loop invariant can be used for insertion sort?
+
+\item What is a loop invariant?
+
+\item What are the three major stages of using an invariant?
+
+\item Why are invariants important in algorithm correctness?
+
+\item Does proving an invariant alone prove that an algorithm terminates?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{16. Invariants -- Answers}
+
+\begin{enumerate}
+\item Before each iteration, the processed portion of the array is sorted and contains exactly the same elements as the corresponding original portion.
+
+\item A property that remains true before and after every loop iteration.
+
+\item Initialization, maintenance, and termination.
+
+\item They provide a structured way to prove that an algorithm maintains correctness throughout execution.
+
+\item No. Termination must be established separately.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 17. STRONG INDUCTION
+% =================================================
+
+\section{Strong Induction}
+
+\begin{frame}{17. Strong Induction -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} For
+\[
+T(n)=T(n-1)+T(n-2),
+\]
+why can strong induction be useful?
+
+\item State the Principle of Strong Induction.
+
+\item Prove that every integer $n\geq2$ can be expressed as a product of primes.
+
+\item Why can strong induction require multiple base cases?
+
+\item What is the difference between ordinary and strong induction?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{17. Strong Induction -- Answers}
+
+\begin{enumerate}
+\item The recurrence depends on multiple earlier values, so assuming all previous cases makes the induction step natural.
+
+\item Assume $P(1),P(2),\ldots,P(k)$ are true and prove $P(k+1)$.
+
+\item If $n$ is prime, it is already a product of one prime. If composite, write $n=ab$ where $a,b<n$ and apply the induction hypothesis to both.
+
+\item The proof of $P(k+1)$ may depend on several earlier values rather than only $P(k)$.
+
+\item Ordinary induction assumes only $P(k)$; strong induction assumes all previous cases up to $k$.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% 18. STRUCTURAL INDUCTION
+% =================================================
+
+\section{Structural Induction}
+
+\begin{frame}{18. Structural Induction -- Questions}
+
+\begin{enumerate}
+\item \textbf{Computing:} For a binary expression tree, prove that the number of leaves equals the number of internal binary nodes plus one.
+
+\item What is structural induction?
+
+\item What are the main cases when proving a property of recursively defined binary trees?
+
+\item How is structural induction different from ordinary induction?
+
+\item Why is structural induction suitable for recursive data structures?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{18. Structural Induction -- Answers}
+
+\begin{enumerate}
+\item Base case: a leaf has one leaf and zero internal nodes. For an internal node with two subtrees, combine the induction hypotheses:
+\[
+(L_1+L_2)=(I_1+1)+(I_2+1)
+=I_1+I_2+2.
+\]
+Since the new internal node adds one,
+\[
+L=I+1.
+\]
+
+\item Structural induction proves properties by following the recursive construction of an object.
+
+\item Base case: leaf. Recursive case: combine the two subtrees.
+
+\item Ordinary induction is based on integer progression; structural induction is based on the construction rules of recursive objects.
+
+\item Recursive structures such as trees, expressions, and lists are naturally generated by construction rules.
+\end{enumerate}
+
+\end{frame}
+
+% =================================================
+% FINAL REVISION SLIDE
+% =================================================
+
+
+% =================================================
+% END
+% =================================================
+
+{
+\setbeamertemplate{footline}{}
+\begin{frame}
+\centering
+\vspace{1.5cm}
+
+{\Huge\bfseries Thank You}
+
+\vspace{0.5cm}
+
+{\Large Mathematics of Computing}
+
+\vspace{0.4cm}
+
+{\large CUSAT M.Tech -- AI \& Software Engineering}
+
+\vspace{0.8cm}
+
+{\large Sayona C Sajan}
+
+\end{frame}
+}
+
+\end{document}
